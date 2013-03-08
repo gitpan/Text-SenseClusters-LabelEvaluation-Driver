@@ -9,7 +9,7 @@ my $matrixToArrangeRef= "matrixRef";
 my $columnHeaderRef = "colHeaderRef";
 my $rowHeaderRef = "rowHeaderRef";
 
-
+my $INFINTE_NUMBER = 999999999;
 
 #######################################################################################################################
 
@@ -44,16 +44,16 @@ Text::SenseClusters::LabelEvaluation::AssigningLabelUsingHungarianAlgo - Module 
 
 
 	# Creating the Hungarian object.
-	my $hungrainObject = Text::SenseClusters::LabelEvaluation::AssigningLabelUsingHungarianAlgo
+	my $hungarainObject = Text::SenseClusters::LabelEvaluation::AssigningLabelUsingHungarianAlgo
 						->new(\@mat, \@topicHeader, \@clusterHeader);
 
 	# Assigning the labels to clusters using Hungarian algorithm.
-	my $accuracy = $hungrainObject->reAssigningWithHungarianAlgo();
+	my $accuracy = $hungarainObject->reAssigningWithHungarianAlgo();
 
 	# Assigning the labels to clusters using Hungarian algorithm. In this case,
 	# user will get new matrix which contains the mapping between clusters and labels.
 	#my ($accuracy,$finalMatrixRef,$newColumnHeaderRef) = 
-	#		$hungrainObject->reAssigningWithHungarianAlgo();
+	#		$hungarainObject->reAssigningWithHungarianAlgo();
 
 	# Following function will just print matrix for you.
 	#Text::SenseClusters::LabelEvaluation::AssigningLabelUsingHungarianAlgo::printMatrix 
@@ -253,8 +253,14 @@ sub reAssigningWithHungarianAlgo{
 		$rowIndex++;
 	}
 	
+	print STDERR "\n\n";
+	
+	my $accuracy = 0;
+	
 	# Calculating the total accuracy of the assignment.
-	my $accuracy  = ($totalDiagonalCount / $totalMatrixCount);
+	if($totalMatrixCount !=0 ){
+		$accuracy = ($totalDiagonalCount / $totalMatrixCount);
+	}
 	
 	#print STDERR "\n\nAccuracy of labels is  $accuracy-->$totalDiagonalCount-->$totalMatrixCount-->\n\n\n";
 	# Reference : http://perldoc.perl.org/functions/wantarray.html
@@ -299,7 +305,7 @@ sub inverseMatrixCellValue{
 		foreach $column (0..@{$mat[$row]}-1){
 			# If the matrix is zero, than do not divide it by zero.
 			if($mat[$row][$column]==0){
-				$inverseMatrix[$row][$column] = 0;
+				$inverseMatrix[$row][$column] = $INFINTE_NUMBER;
 				next;
 			}
 	    	$inverseMatrix[$row][$column] = 1/$mat[$row][$column] ;
@@ -389,7 +395,7 @@ sub printMatrix{
 http://senseclusters.cvs.sourceforge.net/viewvc/senseclusters/LabelEvaluation/ 
  
 Last modified by :
-$Id: AssigningLabelUsingHungarianAlgo.pm,v 1.4 2013/02/14 01:14:38 jhaxx030 Exp $
+$Id: AssigningLabelUsingHungarianAlgo.pm,v 1.5 2013/03/07 23:19:41 jhaxx030 Exp $
 
 =head1 AUTHORS
 

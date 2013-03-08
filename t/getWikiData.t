@@ -12,12 +12,16 @@ use Text::SenseClusters::LabelEvaluation::Wikipedia::GetWikiData;
 # data from the wikipedia.
 $topicName ="BillClinton";
 
+# This tells to not to create the temp files (which will held the data feteched from 
+# wikipedia). To keep this file make it 0.
+my $isClean = 1;
+
 # The following code will call the getWikiDataForTopic() function from the 
 # GetWikiData modules. It will create the file containing the wikipedia 
 # information about the topic.
 $fileName = 
 	Text::SenseClusters::LabelEvaluation::Wikipedia::GetWikiData::getWikiDataFileForTopic(
-						$topicName);
+						$topicName, $isClean);
 
 
 $expectedFileName = "temp_BillClinton.txt";

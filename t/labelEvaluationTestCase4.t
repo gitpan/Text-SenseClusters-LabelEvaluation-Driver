@@ -41,7 +41,19 @@ our $topicFileHandle = FileHandle->new(">$topicFileName");
 
 # Writing into the Topic file.
 # Bill Clinton  ,   Tony  Blair 
-print $topicFileHandle "Bill Clinton  ,   Tony  Blair \n";
+print $topicFileHandle "Cluster1:::Tony Blair\n"; 
+print $topicFileHandle "Cluster0:::Bill Clinton\n"; 
+print $topicFileHandle "Tony Blair::: Anthony Charles Lynton Blair (born 6 May 1953)[1] is a British Labour 
+						Party politician who served as the Prime Minister of the United Kingdom from 1997 to 2007. 
+						He was the Member of Parliament (MP) for Sedgefield from 1983 to 2007 and Leader of the 
+						Labour Party from 1994 to 2007. He resigned from all of these positions in June 2007.\n";
+
+print $topicFileHandle "Bill Clinton::: William Jefferson \"Bill\" Clinton (born William Jefferson Blythe III; 
+						August 19, 1946) is an American politician who served as the 42nd President of the 
+						United States from 1993 to 2001. Inaugurated at age 46, he was the third-youngest 
+						president. He took office at the end of the Cold War, and was the first president 
+						of the baby boomer generation. Clinton has been described as a New Democrat. Many 
+						of his policies have been attributed to a centrist Third Way philosophy of governance.";
 
 # Closing the handles.
 close($labelFileHandle);								
@@ -50,10 +62,11 @@ close($topicFileHandle);
 # Calling the LabelEvaluation modules by passing the following options
 %inputOptions = (
 	senseClusterLabelFileName => $labelFileName, 
-	labelComparisonMethod => 'automate',
+	labelComparisonMethod => 'direct',
 	goldKeyFileName => $topicFileName,
-	goldKeyDataSource => 'wikipedia',
-	weightRatio => 10
+	goldKeyDataSource => 'userData',
+	weightRatio => 10,
+	isClean => 1,
 );
 
 

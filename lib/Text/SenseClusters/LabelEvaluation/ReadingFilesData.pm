@@ -525,7 +525,11 @@ sub readTopicDataFromTopicFile {
 		}
 		# Removing space from the front and back.
 		$topicData =~ s/^\s+|\s+$//g;
-		$topicDataHash{$topicKey} = $topicData;
+		
+		if($topicKey){
+			$topicDataHash{$topicKey} = $topicData;	
+		}
+		
 	}
 
 	# Close the file handle.
@@ -638,7 +642,7 @@ sub readTopicNamesFromTopicFile {
 http://senseclusters.cvs.sourceforge.net/viewvc/senseclusters/LabelEvaluation/
 
 Last modified by :
-$Id: ReadingFilesData.pm,v 1.4 2013/02/13 03:54:58 jhaxx030 Exp $
+$Id: ReadingFilesData.pm,v 1.5 2013/03/07 23:15:49 jhaxx030 Exp $
  
 =head1 AUTHORS
 

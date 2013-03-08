@@ -126,7 +126,7 @@ This function will fetch data about a topics from the Wikipedia and return to
 user.
 
 @argument1	: Name of the topic for which we need to fetch data from the 
- 				  Wikipedia.
+ 			  Wikipedia.
 @return 	: String data about the topics.
 
 =cut
@@ -136,6 +136,9 @@ sub getWikiDataForTopic{
 	
 	# Read the Topic name from the argument of the function.
 	my $topicToLook = shift;
+	
+	# Reading the parameter which says whether to delete data or not.
+	my $isClean = shift; 
 	
 	# Removing the white space from the front and end of the word.
 	$topicToLook =~ s/^\s+|\s+$//g;
@@ -153,9 +156,21 @@ sub getWikiDataForTopic{
 		$topicData = $topicData.$result->text(); 
 		
 		# Also adding the list of any related items into the files. 
-		$topicData = $topicData.$result->related();
+		$topicData = $topicData.join("\n", $result->related());
 	}
 
+	# If user want to see the wiki files, he will mention isClean==1.
+	if($isClean == 0){
+		# Creating the fileName from the topic name.
+		my $fileName = "temp_$topicToLook.txt";
+		# Open the file handle in Write Mode.
+		open (MYFILE, ">$fileName");
+		# Writing the content of the search result into the newly created file.
+		print MYFILE $topicData;
+		# Close the file handle.
+		close (MYFILE);
+	}
+	
 	# Returning the wikipedia about the topic
 	return $topicData;
 }
@@ -170,7 +185,7 @@ sub getWikiDataForTopic{
 http://senseclusters.cvs.sourceforge.net/viewvc/senseclusters/LabelEvaluation/ 
  
 Last modified by :
-$Id: GetWikiData.pm,v 1.4 2013/02/09 23:43:45 jhaxx030 Exp $
+$Id: GetWikiData.pm,v 1.5 2013/03/07 23:11:51 jhaxx030 Exp $
 
 	
 =head1 AUTHORS

@@ -70,6 +70,7 @@ http://search.cpan.org/~tpederse/Text-Similarity-0.09/
 my $clusterData = "ClusterData";
 my $topicData = "TopicData";
 my $stopListFileLoc = "StopListLoc";
+my $verbose = "Verbose";
 	
 
 ##########################################################################################
@@ -87,6 +88,8 @@ This constructor takes these argument and intialize it for the class:
 		  This variable contains the Gold standard key's data.
 	3. $stopListFileLoc :  Datatype: String
 		  This variable contains the user defined location for the stop list file.
+	4. $verbose :  Datatype: integer
+		  This variable tells whether to display all type of similarity score or not.		  
 					
 =cut
 
@@ -108,6 +111,9 @@ sub new {
 
 	# Getting the stop list file location.
 	$scoreObject->{$stopListFileLoc} = shift;
+	
+	# Getting the verbose option by user.
+	$scoreObject->{$verbose} = shift;
 	
 	# Returning the blessed hash refered by $self.
 	return $scoreObject;
@@ -151,6 +157,9 @@ sub computeOverlappingScores{
 	# Getting the stop list file location.
 	my $stopListFileLocation = $readFileObject->{$stopListFileLoc};
 	
+	# Getting the verbose option by user.
+	my $verboseOption = $readFileObject->{$verbose};
+	
 	if(!defined $stopListFileLocation){
 			 # Getting the module name.
 			my $module = "Text/SenseClusters/LabelEvaluation/SimilarityScore.pm";
@@ -173,7 +182,7 @@ sub computeOverlappingScores{
 	
 	# Setting the Options for getting the results from the Text::Similarity
 	# Module.
-	my %options = ('verbose' => 0, 'stoplist' => $stopListFileLocation);
+	my %options = ('verbose' => $verboseOption, 'stoplist' => $stopListFileLocation);
 
 	# Creating the new Overlaps Object.
 	my $mod = Text::Similarity::Overlaps->new (\%options);
@@ -209,7 +218,7 @@ http://senseclusters.cvs.sourceforge.net/viewvc/senseclusters/LabelEvaluation/
  
  
 Last modified by :
-$Id: SimilarityScore.pm,v 1.4 2013/02/09 23:49:24 jhaxx030 Exp $
+$Id: SimilarityScore.pm,v 1.5 2013/03/07 23:14:13 jhaxx030 Exp $
 
 	
 =head1 AUTHORS

@@ -9,7 +9,10 @@ Makefile.PL
 MANIFEST			This list of files
 README
 GPL.txt
-t/labelEvaluation.t
+t/labelEvaluationTestCase1.t
+t/labelEvaluationTestCase2.t
+t/labelEvaluationTestCase3.t
+t/labelEvaluationTestCase4.t
 t/getWikiData.t
 t/usingHungarianAlgo.t
 t/readingFilesData.t
@@ -23,4 +26,5 @@ TestData/TVS/TVSUserData.txt
 
 
 
-META.yml                                 Module meta-data (added by MakeMaker)
+META.yml                                 Module YAML meta-data (added by MakeMaker)
+META.json                                Module JSON meta-data (added by MakeMaker)
