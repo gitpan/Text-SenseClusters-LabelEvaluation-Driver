@@ -39,7 +39,7 @@ Text::SenseClusters::LabelEvaluation::SimilarityScore - Module for getting the s
 						"Business Machines, International Machines, United States, Justice Department";
 						 
 		my $similarityObject = Text::SenseClusters::LabelEvaluation::SimilarityScore->
-				new($firstString,$secondString, "../stoplist.txt");
+				new($firstString,$secondString, "./stoplist.txt");
 		
 		#my $score = $similarityObject->computeOverlappingScores();
 			my ($score, %allScores) = $similarityObject->computeOverlappingScores();
@@ -218,7 +218,7 @@ http://senseclusters.cvs.sourceforge.net/viewvc/senseclusters/LabelEvaluation/
  
  
 Last modified by :
-$Id: SimilarityScore.pm,v 1.5 2013/03/07 23:14:13 jhaxx030 Exp $
+$Id: SimilarityScore.pm,v 1.6 2013/03/18 00:47:24 jhaxx030 Exp $
 
 	
 =head1 AUTHORS

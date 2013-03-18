@@ -1,5 +1,8 @@
 Revision history for Text-SenseClusters-Wikipedia-LabelEvaluation
 
+0.09	Sun Mar 17 20:20:09 CST 2013
+		Corrected the documentation styles and added more documents on how to pass various options to this module.
+		
 0.08	Thu Mar 07 17:33:37 CST 2013
 		Fixed the errors of the previous version. Included more descriptions about the Modules. Added new test cases.
  

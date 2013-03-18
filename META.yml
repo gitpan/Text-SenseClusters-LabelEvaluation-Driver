@@ -22,4 +22,4 @@ requires:
   Test::More: 0
   Text::Similarity: 0.09
   WWW::Wikipedia: 2
-version: 0.08
+version: 0.09

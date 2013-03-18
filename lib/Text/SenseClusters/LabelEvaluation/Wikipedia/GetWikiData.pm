@@ -35,13 +35,16 @@ Text::SenseClusters::LabelEvaluation::Wikipedia::GetWikiData - Module for gettin
 	# data from the wikipedia.
 	my $topicName ="BillClinton";
 
+	# This tells to not to create the temp files (which will held the data feteched from 
+	# wikipedia). To keep this file make it 0.
+	my $isClean = 1;
 
 	# The following code will call the getWikiDataForTopic() function from the 
 	# GetWikiData modules. It will create the file containing the wikipedia 
 	# information about the topic.
 	my $fileName = 
 		Text::SenseClusters::LabelEvaluation::Wikipedia::GetWikiData::getWikiDataForTopic(
-							$topicName);
+							$topicName, $isClean);
 
 	print "\nName of the File created for the topic \'$topicName\' is $fileName \n";
 
@@ -185,7 +188,7 @@ sub getWikiDataForTopic{
 http://senseclusters.cvs.sourceforge.net/viewvc/senseclusters/LabelEvaluation/ 
  
 Last modified by :
-$Id: GetWikiData.pm,v 1.5 2013/03/07 23:11:51 jhaxx030 Exp $
+$Id: GetWikiData.pm,v 1.6 2013/03/18 02:17:16 jhaxx030 Exp $
 
 	
 =head1 AUTHORS
